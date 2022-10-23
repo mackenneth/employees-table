@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import {getAllEmployees, getDataForAddingNewEmployee, getSortedEmployees} from '../helpers/helpers'
+import {getAllEmployees, getDataForAddingNewEmployee, getSortedEmployees} from '../utils/helpers'
 
 Vue.use(Vuex)
 
