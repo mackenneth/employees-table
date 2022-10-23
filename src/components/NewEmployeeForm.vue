@@ -21,9 +21,13 @@
     </b-form-group>
     <b-form-group
       label="Руководитель"
-      class="mb-1"
+      class="mb-2"
     >
-      <b-form-select v-model="employee.supervisorId" :options="employeesForSelect"/>
+      <b-form-select
+        v-model="employee.supervisorId"
+        :options="employeesForSelect"
+        class="form-select"
+      />
     </b-form-group>
     <b-button
       variant="primary"
