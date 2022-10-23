@@ -55,7 +55,7 @@ export default {
     BFormGroup,
     BForm
   },
-  setup () {
+  setup (_, {emit}) {
     const getDefaultEmployee = () => {
       return {
         firstName: '',
@@ -76,6 +76,7 @@ export default {
     const addNewEmployee = () => {
       store.commit('addNewEmployee', employee.value)
       employee.value = getDefaultEmployee()
+      emit('toggleFormDisplaying', false)
     }
 
     const employeesForSelect = computed(() => {
