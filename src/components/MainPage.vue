@@ -7,7 +7,7 @@
         class="mb-2"
       />
     </div>
-    <employees-table/>
+    <employees-table v-if="employees.length"/>
     <b-modal
       v-model="isFormDisplaying"
       hide-footer
@@ -24,7 +24,7 @@ import NewEmployeeForm from './NewEmployeeForm'
 import DisplayNewEmployeeFormButton from './DisplayNewEmployeeFormButton'
 import Storage from '../utils/Storage'
 import store from '../store'
-import {ref} from '@vue/composition-api'
+import {computed, ref} from '@vue/composition-api'
 
 export default {
   name: 'MainPage',
@@ -43,6 +43,7 @@ export default {
     })
 
     const isFormDisplaying = ref(false)
+    const employees = computed(() => store.getters['allEmployees'])
 
     const toggleFormDisplaying = (value) => {
       isFormDisplaying.value = value
@@ -50,6 +51,7 @@ export default {
 
     return {
       isFormDisplaying,
+      employees,
 
       toggleFormDisplaying
     }
