@@ -1,9 +1,12 @@
 <template>
   <div>
-    <display-new-employee-form-button
-      @toggleFormDisplaying="toggleFormDisplaying"
-      class="mb-2"
-    />
+    <div>
+      <h1>Список сотрудников</h1>
+      <display-new-employee-form-button
+        @toggleFormDisplaying="toggleFormDisplaying"
+        class="mb-2"
+      />
+    </div>
     <employees-table/>
     <b-modal
       v-model="isFormDisplaying"
