@@ -35,7 +35,9 @@
 </template>
 
 <script>
-import { BTableSimple, BThead, BTbody, BTd, BTr, BTh } from 'bootstrap-vue'
+import {BTableSimple, BThead, BTbody, BTd, BTr, BTh} from 'bootstrap-vue'
+import {computed} from '@vue/composition-api'
+import store from '../store'
 
 export default {
   name: 'EmployeesTable',
@@ -47,12 +49,12 @@ export default {
     BTr,
     BTh
   },
-  props: {
-    employees: {
-      type: Array,
-      required: true,
-      default: () => ([])
+  setup () {
+    const employees = computed(() => store.getters['allEmployees'])
+
+    return {
+      employees
     }
-  },
+  }
 }
 </script>

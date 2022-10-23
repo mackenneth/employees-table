@@ -38,8 +38,9 @@
 </template>
 
 <script>
-import { BFormInput, BFormSelect, BButton, BFormGroup, BForm } from 'bootstrap-vue'
+import {BFormInput, BFormSelect, BButton, BFormGroup, BForm} from 'bootstrap-vue'
 import {computed, ref} from '@vue/composition-api'
+import store from '../store'
 
 export default {
   name: 'NewEmployeeForm',
@@ -50,12 +51,7 @@ export default {
     BFormGroup,
     BForm
   },
-  props: {
-    employees: {
-      type: Array
-    }
-  },
-  setup (props, { emit }) {
+  setup () {
     const getDefaultEmployee = () => {
       return {
         firstName: '',
@@ -67,17 +63,19 @@ export default {
       }
     }
 
+    const employees = computed(() => store.getters['allEmployees'])
+
     const nullOption = {value: null, text: 'Не выбрано'}
 
     const employee = ref(getDefaultEmployee())
 
     const addNewEmployee = () => {
-      emit('addNewEmployee', employee.value)
+      store.commit('addNewEmployee', employee.value)
       employee.value = getDefaultEmployee()
     }
 
     const employeesForSelect = computed(() => {
-      const employeesForDisplaying = props.employees.map(employee => {
+      const employeesForDisplaying = employees.value.map(employee => {
         return {
           value: employee.id,
           text: `${employee.firstName} ${employee.phoneNumber}`
