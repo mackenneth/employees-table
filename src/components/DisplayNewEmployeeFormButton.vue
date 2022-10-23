@@ -1,7 +1,7 @@
 <template>
-  <b-button @click="$emit('toggleFormDisplaying', true)"
-            size="sm"
-            variant="primary"
+  <b-button
+    @click="$emit('toggleFormDisplaying', true)"
+    variant="primary"
   >
     Добавить сотрудника
   </b-button>

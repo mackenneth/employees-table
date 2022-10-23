@@ -1,5 +1,5 @@
 <template>
-  <div class="new-employee-form">
+  <b-form class="new-employee-form" @submit.prevent="addNewEmployee">
     <h2 class="mb-1">Добавление пользователя</h2>
     <b-form-group
       label="Имя"
@@ -8,15 +8,19 @@
       <b-form-input
         v-model.trim="employee.firstName"
         type="text"
+        required
+        min="2"
+        placeholder="Введите имя"
       />
     </b-form-group>
     <b-form-group
       label="Телефон"
       class="mb-1"
+      type="tel"
     >
       <b-form-input
         v-model.trim="employee.phoneNumber"
-        type="text"
+        placeholder="Введите номер телефона"
       />
     </b-form-group>
     <b-form-group
@@ -31,14 +35,13 @@
     </b-form-group>
     <b-button
       variant="primary"
-      size="sm"
       block
       class="w-100"
-      @click="addNewEmployee"
+      type="submit"
     >
       Сохранить
     </b-button>
-  </div>
+  </b-form>
 </template>
 
 <script>
