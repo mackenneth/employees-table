@@ -8,7 +8,12 @@
     :itemes="employees"
   >
     <b-thead>
-      <b-th>
+      <b-th
+        @click="$store.commit('sortEmployees')"
+        :class="{'cursor-pointer': employees.length}"
+        v-b-tooltip
+        :title="employees.length > 1 ? 'Сортировать по алфавиту' : ''"
+      >
         Имя
       </b-th>
       <b-th>
@@ -35,12 +40,15 @@
 </template>
 
 <script>
-import {BTableSimple, BThead, BTbody, BTd, BTr, BTh} from 'bootstrap-vue'
+import {BTableSimple, BThead, BTbody, BTd, BTr, BTh, VBTooltip} from 'bootstrap-vue'
 import {computed} from '@vue/composition-api'
 import store from '../store'
 
 export default {
   name: 'EmployeesTable',
+  directives: {
+    'b-tooltip': VBTooltip
+  },
   components: {
     BTableSimple,
     BThead,
@@ -58,3 +66,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

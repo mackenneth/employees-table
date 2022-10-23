@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import {getAllEmployees, getDataForAddingNewEmployee} from '../helpers/helpers'
+import {getAllEmployees, getDataForAddingNewEmployee, getSortedEmployees} from '../helpers/helpers'
 
 Vue.use(Vuex)
 
@@ -26,6 +26,9 @@ const store = new Vuex.Store({
       } else {
         state.employees.push(employee)
       }
+    },
+    sortEmployees (state) {
+      state.employees = getSortedEmployees(state.employees)
     }
   }
 })

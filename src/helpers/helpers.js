@@ -28,3 +28,21 @@ export const getAllEmployees = (employees, accumulator) => {
   }
   return accumulator
 }
+const sortEmployeesAlphabetically = (firstEmployee, secondEmployee) => {
+  return collator.compare(firstEmployee.firstName, secondEmployee.firstName)
+}
+
+const collator = new Intl.Collator('en')
+
+export const getSortedEmployees = (employees) => {
+  if (employees.length > 1) {
+    employees.sort(sortEmployeesAlphabetically)
+    employees.forEach(employee => {
+      if (employees.length > 1) {
+        employees.sort(sortEmployeesAlphabetically)
+        getSortedEmployees(employee.employees)
+      }
+    })
+  }
+  return employees
+}
